@@ -19,7 +19,7 @@ This is simple login web application developed in JAVA to showcase integration w
 
 
 
-Git pus for submodules:
+Git push for submodules:
 -----------------------------
 
 1.  find . -name ".git*" --> in main / global directory
