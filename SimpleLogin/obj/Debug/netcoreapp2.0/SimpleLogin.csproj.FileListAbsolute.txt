@@ -1,0 +1,10 @@
+/JBoss/RHSSO/SimpleLogin/bin/Debug/netcoreapp2.0/SimpleLogin.deps.json
+/JBoss/RHSSO/SimpleLogin/bin/Debug/netcoreapp2.0/SimpleLogin.runtimeconfig.json
+/JBoss/RHSSO/SimpleLogin/bin/Debug/netcoreapp2.0/SimpleLogin.runtimeconfig.dev.json
+/JBoss/RHSSO/SimpleLogin/bin/Debug/netcoreapp2.0/SimpleLogin.dll
+/JBoss/RHSSO/SimpleLogin/bin/Debug/netcoreapp2.0/SimpleLogin.pdb
+/JBoss/RHSSO/SimpleLogin/obj/Debug/netcoreapp2.0/SimpleLogin.csproj.CoreCompileInputs.cache
+/JBoss/RHSSO/SimpleLogin/obj/Debug/netcoreapp2.0/SimpleLogin.AssemblyInfoInputs.cache
+/JBoss/RHSSO/SimpleLogin/obj/Debug/netcoreapp2.0/SimpleLogin.AssemblyInfo.cs
+/JBoss/RHSSO/SimpleLogin/obj/Debug/netcoreapp2.0/SimpleLogin.dll
+/JBoss/RHSSO/SimpleLogin/obj/Debug/netcoreapp2.0/SimpleLogin.pdb

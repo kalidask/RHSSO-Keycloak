@@ -1,0 +1,30 @@
+﻿@page
+
+@using Microsoft.AspNetCore.Authentication
+@using System.Threading.Tasks;
+@using Microsoft.AspNetCore.Authentication.Cookies;
+@using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+
+@functions {
+    public async Task<IActionResult> OnPostAsync()
+    {
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
+        return RedirectToPage("Login");
+
+
+
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<body>
+    <h1>Welcome to your login-protected area!</h1>
+    <form method="post">
+        <input type="submit" value="Logout" />
+        @Html.AntiForgeryToken()
+    </form>
+</body>
+</html>
