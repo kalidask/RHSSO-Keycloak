@@ -9,3 +9,7 @@ This is simple .Net based login web application which is integrated /secured und
 2. bpost-aspnetcore-local-logins
 
 It's another .Net based login web applicaiton
+
+3. SimpleWebApp
+
+This is simple login web application developed in JAVA to showcase integration with RH-SSO / Keycloak
