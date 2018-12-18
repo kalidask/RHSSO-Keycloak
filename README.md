@@ -13,3 +13,18 @@ It's another .Net based login web applicaiton
 3. SimpleWebApp
 
 This is simple login web application developed in JAVA to showcase integration with RH-SSO / Keycloak
+
+
+
+
+
+
+Git pus for submodules:
+-----------------------------
+
+1.  find . -name ".git*" --> in main / global directory
+2.  rm -rf submodule/.git
+3.  git rm --cached submodule
+4.  git add -A
+5.  git commit -m "msg"
+6. git push -u origin master
