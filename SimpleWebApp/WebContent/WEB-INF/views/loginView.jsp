@@ -4,11 +4,15 @@
 <!DOCTYPE html>
 <html>
    <head>
+   <link rel="stylesheet" type="text/css" href="styles.css"/>
+   
       <meta charset="UTF-8">
       <title>Login</title>
       <script src='https://www.google.com/recaptcha/api.js?hl=en'></script>
    </head>
    <jsp:useBean id="controller" class="org.o7planning.tutorial.keycloak.Controller" scope="request"/>
+       <c:set var="idToken" value="<%=controller.getIDToken(request)%>"/>
+   
    
    <%
         String user_id = "";
@@ -27,18 +31,19 @@
             
             %>
    <body>
+    
       <jsp:include page="_header.jsp"></jsp:include>
-      <jsp:include page="_menu.jsp"></jsp:include>
+    
  
-      <h3>Login Page</h3>
-      <p style="color: red;">${errorString}</p>
-  <%
-      if (authId != null && !authId.isEmpty()) {
-      %>
+      
+<!--      <p style="color: red;">${errorString}</p> -->
+ 
  
       <form method="POST" action="${pageContext.request.contextPath}/login">
      
-      
+       <%
+      if (authId != null && !authId.isEmpty()) {
+      %>
       <input type="hidden" id="userName" name="userName" value= "<%=authId%>" />
       <input type="hidden" id="password" name="password" value= "tom001" />
       <input type="hidden" id="rememberMe" name="rememberMe" value= "Y" />
@@ -46,7 +51,8 @@
       <%
       } else {
       %>
-      
+      <h3>Login Page</h3>
+        <jsp:include page="_menu.jsp"></jsp:include>
          <table border="0">
             <tr>
                <td>User Name</td>
@@ -63,16 +69,40 @@
             </table>
               <div class="g-recaptcha"
           data-sitekey="6LdKbHwUAAAAAJEsfpVc6houLaTKsl5fPCX26dMN"></div>
-                  <input type="submit" value= "Submit" />
-                  <a href="${pageContext.request.contextPath}/">Cancel</a>
+          
                   <%
       }         
                   %>
+               
+    <br/>
+    <br/>
+    
+                 <div class="content">
+                 
+                 Hello <b>${idToken.preferredUsername}!</b>
+                </div>     
+    <div class="menu">             
+                           <button name="submit" type="submit" >Continue to Proceed</button>
+                 
+                  
+                  </div>
+          
          
       </form>
  
-      <p style="color:blue;">User Name: tom, password: tom001 or jerry/jerry001</p>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
  
       <jsp:include page="_footer.jsp"></jsp:include>
+      
    </body>
 </html>

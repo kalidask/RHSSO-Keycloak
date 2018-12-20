@@ -19,6 +19,8 @@ public class LogoutServlet extends HttpServlet {
         {
             try
             {
+            	
+            	System.out.println("I am here to getting out");
                 response.setHeader("Cache-Control","no-cache"); //Forces caches to obtain a new copy of the page from the origin server
                 response.setHeader("Cache-Control","no-store"); //Directs caches not to store the page under any circumstance
                 response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
@@ -27,7 +29,7 @@ public class LogoutServlet extends HttpServlet {
                 session.invalidate();
                 //response.sendRedirect("/WEB-INF/views/loginView.jsp");
                 RequestDispatcher dispatcher //
-                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
+                = this.getServletContext().getRequestDispatcher("index.html?logout=true");
  
         dispatcher.forward(request, response);
             }
@@ -35,6 +37,7 @@ public class LogoutServlet extends HttpServlet {
             {
                 System.out.println(e.getMessage());
                 System.out.println(e);
+                e.printStackTrace();
             }
 
         }
