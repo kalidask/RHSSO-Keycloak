@@ -86,19 +86,6 @@
             await HttpContext.SignInAsync(principal, properties);
         }
 
-        [Route("Logout")]
-        public async Task<IActionResult> Logout(string returnUrl)
-        {
-            ViewBag.ReturnUrl = returnUrl;
-
-            if (!_configuration.GetValue<bool>("Account:ShowLogoutPrompt"))
-            {
-                return await Logout();
-            }
-
-            return View();
-        }
-
         
         public IActionResult Cancel(string returnUrl)
         {
@@ -110,19 +97,15 @@
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpPost]
         [Route("Logout")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Logout()
+        public async Task Logout()
         {
             if (User.Identity.IsAuthenticated)
             {
-                await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-                await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
-
-            }
-
-            return RedirectToAction("Index", "Home");
-        }
+                await HttpContext.SignOutAsync("Cookies");
+                await HttpContext.SignOutAsync("oidc");
+            };
+	}
+        
     }
 }

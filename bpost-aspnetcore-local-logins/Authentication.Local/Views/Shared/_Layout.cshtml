@@ -38,11 +38,9 @@
                     <ul class="nav navbar-nav navbar-right">
                         @if (User.Identity.IsAuthenticated)
                         {
+                        <li><a asp-controller="Home" asp-action="Profile">Hello  @User.Identity.Name!</a></li>
                             <li>
-                                @*<form class="form-logout" method="post" asp-controller="Auth" asp-action="Logout">
-                                    <button class="btn btn-default btn-sm" type="submit">Logout</button>
-                                </form>*@
-                                <a asp-controller="Auth" asp-route-returnUrl="@Context.Request.GetEncodedPathAndQuery()" asp-action="Logout">Logout</a>
+                                <a asp-controller="Auth"   asp-action="Logout">Logout</a>
                             </li>
 
                         }

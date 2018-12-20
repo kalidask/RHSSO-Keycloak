@@ -8,8 +8,12 @@ using System;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-//    using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Http;
+using Microsoft.IdentityModel.Tokens;
+
+
     using Models;
 using Services;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
@@ -47,59 +51,40 @@ using Microsoft.IdentityModel.Protocols.OpenIdConnect;
             services.AddTransient<IUserService, UserService>();
             services.AddMvc();
 
+
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
             services.AddAuthentication(options =>
                 {
-                    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                   options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    //                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    //
-    //
-    //
-  //   options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        // OpenId authentication
-                          options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+     options.DefaultScheme = "Cookies";
+                    options.DefaultChallengeScheme = "oidc";
+
                 })
                 .AddCookie(options =>
                 {
                     options.LoginPath = "/auth/login";
-                    options.LogoutPath = "/auth/logout";
-                }).  /*    AddOpenIdConnect(options =>
+                }). 
+AddOpenIdConnect("oidc", options =>
     {
-
-        options.Authority = "http://localhost:8080/auth/realms/master";
-
-        options.ClientId = "simplelogin";
-
-
-        options.RequireHttpsMetadata = false;
-        options.SaveTokens = true;
-
-
-        options.ClientSecret = "27f676ed-1cad-4a8b-9ba6-a429c47aa599";
-        options.GetClaimsFromUserInfoEndpoint = true;
-
-
-        options.ResponseType = OpenIdConnectResponseType.CodeIdToken;
-    }); */
-
-
-AddOpenIdConnect(options =>
-    {
-        options.Authority = Configuration["Authentication:oidc:Authority"];
-        options.ClientId = Configuration["Authentication:oidc:ClientId"];
-        options.ClientSecret = Configuration["Authentication:oidc:ClientSecret"];
+        options.SignInScheme = "Cookies";
+        options.Authority = Configuration["oidc:Authority"];
+        options.ClientId = Configuration["oidc:ClientId"];
+        options.ClientSecret = Configuration["oidc:ClientSecret"];
         options.RequireHttpsMetadata = false;
         options.GetClaimsFromUserInfoEndpoint = true;
         options.SaveTokens = true;
         options.RemoteSignOutPath = "/SignOut";
         options.SignedOutRedirectUri = "http://localhost:55658/";
         options.ResponseType = "code";
+ options.Scope.Clear();
+        options.Scope.Add("openid");
+        options.CallbackPath = new PathString("/signin-auth0");
+options.TokenValidationParameters = new TokenValidationParameters
+				{
+					NameClaimType = "name",
+				};
 
     });
-
-
-
-
 
 
 

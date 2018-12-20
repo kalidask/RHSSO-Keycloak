@@ -6,23 +6,24 @@
 @using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
 @functions {
-    public async Task<IActionResult> OnPostAsync()
+    public async Task OnPostAsync()
     {
-        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
-        return RedirectToPage("Login");
+ await HttpContext.SignOutAsync("Cookies");
+    await HttpContext.SignOutAsync("oidc");
+//        return RedirectToPage("/Login");
 
 
 
     }
 }
 
+
 <!DOCTYPE html>
 
 <html>
 <body>
     <h1>Welcome to your login-protected area!</h1>
-    <form method="post">
+    <form method="post" >
         <input type="submit" value="Logout" />
         @Html.AntiForgeryToken()
     </form>
